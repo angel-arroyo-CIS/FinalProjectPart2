@@ -1,0 +1,52 @@
+# Angel Arroyo December 6th, 2021
+# 1780023
+
+import csv
+file = open("ManufacturerList.csv", 'r')
+myReader = csv.reader(file, delimiter=',')
+
+for row in myReader:
+    print(row)
+
+with open('PriceList.csv', mode='r') as infile:
+    reader = csv.reader(infile)
+    with open('DamagedInventory.csv', mode='w') as outfile:
+        writer = csv.writer(outfile)
+        dict = {rows[0]:rows[1] for rows in reader}
+
+with open('FullInventory.csv', 'w') as csvfile:
+    writer = csv.writer(csvfile, delimiter=',')
+    writer.writerow(row)
+
+
+with open('PriceList.csv', mode='r') as inp:
+    reader = csv.reader(inp)
+    dict_from_csv = {rows[0]:rows[1] for rows in reader}
+
+with open('ServiceDatesList.csv', mode='r') as inp:
+    reader = csv.reader(inp)
+    dict_from_csv2 = {rows[0]:rows[1] for rows in reader}
+
+with open('PastServiceDate.csv', 'w') as csvfile:
+    writer = csv.writer(csvfile, delimiter=',')
+    writer.writerow(dict_from_csv2)
+
+
+FullInv = {"ItemId": [1167234, 2347800, 2390112, 9034210, 7346234, 1009453, 3001265],
+"Manufacturer": ["Apple", "Apple", "Dell", "Dell", "Lenovo", "Lenovo", "Samsung"],
+"ItemType": ["phone", "laptop", "laptop", "tower", "laptop", "tower", "phone"],
+"ItemPrice": [534, 999, 799, 345, 239, 599, 1200]}
+
+print(FullInv)
+
+while True:
+    quit = input("Type a query or q to quit: ")
+    if(quit == "q"):
+        break
+    item = ""
+    types = ""
+
+    if(item == "" or types == ""):
+        print("No such item in inventory")
+        
+  
